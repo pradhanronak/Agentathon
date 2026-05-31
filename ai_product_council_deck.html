@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Product Council — Internal Deck</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --ink: #18181b;
+  --ink-soft: #3f3f46;
+  --muted: #71717a;
+  --mute-2: #a1a1aa;
+  --line: #e4e4e7;
+  --line-soft: #f4f4f5;
+  --accent: #0e7490;
+  --accent-soft: #ecfeff;
+  --accent-mid: #155e75;
+  --warn: #b45309;
+
+  --sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", "SF Mono", Menlo, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body { overflow-x: hidden; }
+
+.deck {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.slide {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  height: 100vh;
+  min-height: 720px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 88px 80px 64px;
+  position: relative;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.slide-inner {
+  width: 100%;
+  max-width: 1180px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Top header bar — appears on every slide */
+.slide-header {
+  position: absolute;
+  top: 36px;
+  left: 80px;
+  right: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+  z-index: 3;
+}
+
+.slide-id {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.slide-id .num {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.slide-id .sep {
+  width: 18px;
+  height: 1px;
+  background: var(--mute-2);
+}
+
+.slide-id .name { color: var(--muted); }
+
+.slide-brand {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.slide-brand strong { color: var(--ink); font-weight: 600; }
+
+/* Counter pinned top-right (replaces brand position on smaller screens) */
+.counter {
+  position: fixed;
+  bottom: 28px;
+  right: 32px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  z-index: 100;
+  background: var(--bg);
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+
+.counter strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Typography primitives */
+.headline {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(38px, 5vw, 60px);
+  line-height: 1.05;
+  letter-spacing: -0.028em;
+  color: var(--ink);
+}
+
+.headline .accent { color: var(--accent); }
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.eyebrow::before {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: var(--accent);
+}
+
+.lede {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 720px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SLIDE 1 — Title + Problem
+   ═══════════════════════════════════════════════════════════════════ */
+.slide-1 .slide-inner {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 64px 56px;
+  align-items: end;
+}
+
+.slide-1 .title-block { grid-column: 1 / -1; }
+
+.slide-1 .brand-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 36px;
+}
+
+.slide-1 .brand-mark {
+  width: 38px;
+  height: 38px;
+  background: var(--accent);
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+}
+
+.slide-1 .brand-mark svg { color: white; }
+
+.slide-1 .brand-name {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.slide-1 .brand-sub {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.slide-1 .title {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(54px, 7.2vw, 96px);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  margin-bottom: 24px;
+  max-width: 980px;
+}
+
+.slide-1 .title .accent { color: var(--accent); }
+
+.slide-1 .subtitle {
+  font-family: var(--sans);
+  font-size: clamp(18px, 1.6vw, 22px);
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  max-width: 680px;
+}
+
+.slide-1 .problem {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 520px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.slide-1 .problem-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.slide-1 .hero-metric {
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+
+.slide-1 .hero-metric .label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+
+.slide-1 .hero-metric .vs-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.slide-1 .hero-metric .row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.slide-1 .hero-metric .num {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: clamp(56px, 7vw, 92px);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  font-feature-settings: "tnum";
+}
+
+.slide-1 .hero-metric .row.primary .num { color: var(--accent); }
+.slide-1 .hero-metric .row.secondary .num {
+  color: var(--ink);
+  opacity: 0.45;
+  font-size: 0.62em;
+}
+
+.slide-1 .hero-metric .unit {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.slide-1 .hero-metric .vs-divider {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--mute-2);
+  text-transform: uppercase;
+  padding: 6px 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SLIDE 2 — How It Works
+   ═══════════════════════════════════════════════════════════════════ */
+.slide-2 .slide-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.slide-2 .header h2 { margin-bottom: 14px; }
+
+.diagram-wrap {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 32px 28px 24px;
+}
+
+.diagram-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+}
+
+.diagram-col {
+  padding: 0 16px;
+  border-right: 1px solid var(--line);
+}
+.diagram-col:first-child { padding-left: 0; }
+.diagram-col:last-child { padding-right: 0; border-right: none; }
+
+.diagram-col h4 {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.diagram-col h4 .stage-num {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.diagram-col .stage-sub {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 18px;
+  font-family: var(--mono);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+.diagram-col .cards { display: flex; flex-direction: column; gap: 6px; }
+
+.agent-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 11px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: border-color 0.2s ease;
+}
+
+.agent-card.accent {
+  background: var(--accent-soft);
+  border-color: rgba(14, 116, 144, 0.3);
+}
+
+.agent-card .marker {
+  width: 4px;
+  height: 14px;
+  background: var(--accent);
+  flex-shrink: 0;
+  border-radius: 1px;
+}
+
+.agent-card .agent-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+}
+
+.diagram-footer {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.diagram-footer .footer-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.diagram-footer .footer-item .stat {
+  font-family: var(--sans);
+  font-feature-settings: "tnum";
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.diagram-footer .footer-item .stat-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SLIDE 3 — Watch It Run (video)
+   ═══════════════════════════════════════════════════════════════════ */
+.slide-3 .slide-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  align-items: center;
+}
+
+.slide-3 .header {
+  max-width: 760px;
+  width: 100%;
+}
+
+.slide-3 .header h2 { margin-bottom: 14px; }
+
+.video-frame {
+  width: 100%;
+  background: #09090b;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px -16px rgba(24, 24, 27, 0.18), 0 1px 0 rgba(24, 24, 27, 0.04);
+  aspect-ratio: 16 / 9;
+  position: relative;
+}
+
+.video-frame video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.video-caption {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.video-caption .sep {
+  width: 14px;
+  height: 1px;
+  background: var(--mute-2);
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SLIDE 4 — Benefits
+   ═══════════════════════════════════════════════════════════════════ */
+.slide-4 .slide-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.benefit-card {
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.benefit-card:nth-child(3n) { border-right: none; }
+.benefit-card:nth-last-child(-n+3) { border-bottom: none; }
+
+.benefit-card .icon {
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+  margin-bottom: 2px;
+}
+
+.benefit-card h5 {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.25;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.benefit-card p {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.benefit-card .num {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--mute-2);
+  letter-spacing: 0.04em;
+}
+
+.cycle-compare {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px 28px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 36px;
+  align-items: center;
+}
+
+.cycle-compare .bars { display: flex; flex-direction: column; gap: 14px; }
+
+.cycle-row {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 18px;
+  align-items: center;
+}
+
+.cycle-row .label {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.cycle-row .bar-track {
+  height: 14px;
+  background: var(--line-soft);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cycle-row .bar-fill {
+  position: absolute;
+  top: 0; left: 0; bottom: 0;
+  border-radius: 2px;
+}
+
+.cycle-row.traditional .bar-fill {
+  width: 100%;
+  background: var(--ink);
+}
+
+.cycle-row.council .bar-fill {
+  width: 0.5%;
+  background: var(--accent);
+  box-shadow: 0 0 14px rgba(14, 116, 144, 0.55);
+}
+
+.cycle-row.council .annotation {
+  position: absolute;
+  left: calc(0.5% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.cycle-row.traditional .annotation {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--surface);
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.cycle-callout { text-align: right; }
+
+.cycle-callout .mult {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 56px;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--accent);
+  font-feature-settings: "tnum";
+}
+
+.cycle-callout .mult .x {
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.cycle-callout .caption {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 8px;
+  max-width: 200px;
+  margin-left: auto;
+  line-height: 1.5;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   SLIDE 5 — Operational Vision
+   ═══════════════════════════════════════════════════════════════════ */
+.slide-5 .slide-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.ops-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+}
+
+.ops-col h3 {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.workflow-list, .roadmap-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+
+.workflow-item {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 16px;
+  align-items: baseline;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.workflow-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+.workflow-item .step-num {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+
+.workflow-item .step-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.workflow-item .step-text strong { color: var(--ink); font-weight: 700; }
+
+.roadmap-item {
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.roadmap-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+.roadmap-item .title {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: -0.005em;
+}
+
+.roadmap-item .title::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  flex-shrink: 0;
+  border-radius: 1px;
+}
+
+.roadmap-item .text {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  padding-left: 16px;
+}
+
+.slide-5 .footer-attr {
+  position: absolute;
+  bottom: 56px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mute-2);
+}
+
+/* Reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.3, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+.reveal.d1 { transition-delay: 0.08s; }
+.reveal.d2 { transition-delay: 0.16s; }
+.reveal.d3 { transition-delay: 0.24s; }
+.reveal.d4 { transition-delay: 0.32s; }
+
+@media print {
+  html, body { overflow: visible; height: auto; background: white; }
+  .deck { scroll-snap-type: none; overflow: visible; height: auto; }
+  .slide { page-break-after: always; height: auto; min-height: 100vh; }
+  .counter { display: none; }
+  .reveal { opacity: 1; transform: none; }
+  .video-frame { background: white; }
+  .video-frame video { display: none; }
+  .video-frame::after {
+    content: "Video demo — see digital deck for playback";
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    color: var(--muted);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+}
+
+@media (max-width: 1024px) {
+  .slide { padding: 88px 48px 64px; }
+  .slide-header { left: 48px; right: 48px; }
+  .slide-1 .slide-inner { grid-template-columns: 1fr; }
+  .benefit-grid { grid-template-columns: repeat(2, 1fr); }
+  .benefit-card { border-right: none; }
+  .benefit-card:nth-child(2n) { border-right: none; }
+  .benefit-card:nth-child(odd) { border-right: 1px solid var(--line); }
+  .ops-cols { grid-template-columns: 1fr; gap: 36px; }
+  .cycle-compare { grid-template-columns: 1fr; }
+  .cycle-callout { text-align: left; }
+  .cycle-callout .caption { margin-left: 0; }
+  .diagram-cols { grid-template-columns: 1fr; }
+  .diagram-col { border-right: none; border-bottom: 1px solid var(--line); padding: 16px 0; }
+  .diagram-col:last-child { border-bottom: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="counter"><strong id="cur">01</strong> / 05</div>
+
+<main class="deck">
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SLIDE 1 — Title + Problem
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="slide slide-1" id="s1">
+    <div class="slide-header">
+      <div class="slide-id"><span class="num">01</span><span class="sep"></span><span class="name">Introduction</span></div>
+      <div class="slide-brand"><strong>AI Product Council</strong> · Internal · Product Research</div>
+    </div>
+
+    <div class="slide-inner">
+
+      <div class="title-block">
+        <div class="brand-row reveal">
+          <div class="brand-mark">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="brand-name">AI Product Council</div>
+            <div class="brand-sub">A virtual stakeholder review board</div>
+          </div>
+        </div>
+
+        <h1 class="title reveal d1">
+          Pressure-test new<br>
+          banking features<br>
+          <span class="accent">before any code ships.</span>
+        </h1>
+
+        <p class="subtitle reveal d2">
+          Eleven AI agents — internal experts and target customers — review every product idea in parallel and return a verdict in seconds.
+        </p>
+      </div>
+
+      <div class="problem reveal d3">
+        <div class="problem-label">The problem</div>
+        <p>
+          Validating a new banking feature takes weeks of cross-functional reviews. By the time feedback arrives, engineering has already built half the wrong thing.
+        </p>
+      </div>
+
+      <div class="hero-metric reveal d4">
+        <div class="label">Validation loop, compressed</div>
+        <div class="vs-stack">
+          <div class="row primary">
+            <div class="num">30</div>
+            <div class="unit">seconds</div>
+          </div>
+          <div class="vs-divider">— vs —</div>
+          <div class="row secondary">
+            <div class="num">3</div>
+            <div class="unit">weeks</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SLIDE 2 — How It Works
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="slide slide-2" id="s2">
+    <div class="slide-header">
+      <div class="slide-id"><span class="num">02</span><span class="sep"></span><span class="name">How it works</span></div>
+      <div class="slide-brand"><strong>AI Product Council</strong> · Internal · Product Research</div>
+    </div>
+
+    <div class="slide-inner">
+
+      <div class="header">
+        <div class="eyebrow reveal">Architecture</div>
+        <h2 class="headline reveal d1" style="margin-top:14px;">Eleven agents. Three stages.<br><span class="accent">One verdict.</span></h2>
+        <p class="lede reveal d2" style="margin-top:16px;">
+          Internal experts and target customers review in parallel. A synthesis layer turns their disagreements into a ranked action list.
+        </p>
+      </div>
+
+      <div class="diagram-wrap reveal d3">
+        <div class="diagram-cols">
+
+          <div class="diagram-col">
+            <h4><span class="stage-num">A</span>Internal review</h4>
+            <div class="stage-sub">5 agents · parallel</div>
+            <div class="cards">
+              <div class="agent-card"><span class="marker"></span><span class="agent-name">Risk &amp; Controls</span></div>
+              <div class="agent-card"><span class="marker"></span><span class="agent-name">Legal &amp; Compliance</span></div>
+              <div class="agent-card"><span class="marker"></span><span class="agent-name">Principal Engineer</span></div>
+              <div class="agent-card"><span class="marker"></span><span class="agent-name">Business Value</span></div>
+              <div class="agent-card accent"><span class="marker"></span><span class="agent-name">Banking Announcement</span></div>
+            </div>
+          </div>
+
+          <div class="diagram-col">
+            <h4><span class="stage-num">B</span>Customer reactions</h4>
+            <div class="stage-sub">5 personas · after A</div>
+            <div class="cards">
+              <div class="agent-card"><span class="marker"></span><span class="agent-name">Jordan, 28 · SWE</span></div>
+              <div class="agent-card"><span class="marker"></span><span class="agent-name">Maria, 43 · SMB owner</span></div>
+              <div class="agent-card"><span class="marker"></span><span class="agent-name">Robert, 71 · retired</span></div>
+              <div class="agent-card"><span class="marker"></span><span class="agent-name">Tyler, 21 · student</span></div>
+              <div class="agent-card"><span class="marker"></span><span class="agent-name">Catherine, 52 · HNW</span></div>
+            </div>
+          </div>
+
+          <div class="diagram-col">
+            <h4><span class="stage-num">C</span>Synthesis</h4>
+            <div class="stage-sub">2 agents · after A &amp; B</div>
+            <div class="cards">
+              <div class="agent-card accent"><span class="marker"></span><span class="agent-name">Enhancement</span></div>
+              <div class="agent-card accent"><span class="marker"></span><span class="agent-name">Insight · Go / Refine / No-Go</span></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="diagram-footer">
+          <div class="footer-item">
+            <div class="stat">~30s</div>
+            <div class="stat-label">wall-clock</div>
+          </div>
+          <div class="footer-item">
+            <div class="stat">11</div>
+            <div class="stat-label">agents per run</div>
+          </div>
+          <div class="footer-item">
+            <div class="stat">3</div>
+            <div class="stat-label">parallel stages</div>
+          </div>
+          <div class="footer-item">
+            <div class="stat">0</div>
+            <div class="stat-label">single point of failure</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SLIDE 3 — Watch It Run (video)
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="slide slide-3" id="s-demo">
+    <div class="slide-header">
+      <div class="slide-id"><span class="num">03</span><span class="sep"></span><span class="name">Live walkthrough</span></div>
+      <div class="slide-brand"><strong>AI Product Council</strong> · Internal · Product Research</div>
+    </div>
+
+    <div class="slide-inner">
+
+      <div class="header">
+        <div class="eyebrow reveal">Demo</div>
+        <h2 class="headline reveal d1" style="margin-top:14px;">Watch it <span class="accent">run.</span></h2>
+        <p class="lede reveal d2" style="margin-top:14px;">
+          A live simulation, end to end — eleven agents resolving in real time on a real banking feature.
+        </p>
+      </div>
+
+      <div class="video-frame reveal d3">
+        <video
+          id="demo-video"
+          src="AIProductCouncil.mp4"
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          controls
+        ></video>
+      </div>
+
+      <div class="video-caption reveal d4">
+        <span>Recorded walkthrough</span>
+        <span class="sep"></span>
+        <span>1:18 runtime</span>
+        <span class="sep"></span>
+        <span>autoplays on view</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SLIDE 4 — Benefits
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="slide slide-4" id="s4">
+    <div class="slide-header">
+      <div class="slide-id"><span class="num">04</span><span class="sep"></span><span class="name">Why this matters</span></div>
+      <div class="slide-brand"><strong>AI Product Council</strong> · Internal · Product Research</div>
+    </div>
+
+    <div class="slide-inner">
+
+      <div class="header">
+        <div class="eyebrow reveal">Outcomes</div>
+        <h2 class="headline reveal d1" style="margin-top:14px;">What the bank <span class="accent">gets.</span></h2>
+        <p class="lede reveal d2" style="margin-top:14px;">Six measurable shifts in how product decisions get made.</p>
+      </div>
+
+      <div class="benefit-grid reveal d3">
+        <div class="benefit-card">
+          <span class="num">01</span>
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2 2"></path></svg>
+          </div>
+          <h5>Compress the validation loop</h5>
+          <p>Weeks of meetings collapse into seconds. Iterate before sprint planning.</p>
+        </div>
+
+        <div class="benefit-card">
+          <span class="num">02</span>
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 11V7a4 4 0 0 0-8 0v4"></path><rect x="3" y="11" width="18" height="11" rx="2"></rect></svg>
+          </div>
+          <h5>Catch compliance early</h5>
+          <p>Reg E, UDAAP, ADA flags surface at concept stage — not at legal review.</p>
+        </div>
+
+        <div class="benefit-card">
+          <span class="num">03</span>
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline><polyline points="16 7 22 7 22 13"></polyline></svg>
+          </div>
+          <h5>Quantify the business case</h5>
+          <p>Deposit lift, fee revenue, cross-sell modeled before slide-deck politics.</p>
+        </div>
+
+        <div class="benefit-card">
+          <span class="num">04</span>
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="9" y="9" width="6" height="6"></rect></svg>
+          </div>
+          <h5>De-risk engineering</h5>
+          <p>Idempotency, observability, integration complexity surfaced at concept.</p>
+        </div>
+
+        <div class="benefit-card">
+          <span class="num">05</span>
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          </div>
+          <h5>Segment-aware signal</h5>
+          <p>Five archetypes catch "won't land with seniors" before it ships.</p>
+        </div>
+
+        <div class="benefit-card">
+          <span class="num">06</span>
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="4" rx="1"></rect><path d="M5 7v13a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7"></path></svg>
+          </div>
+          <h5>Audit trail by default</h5>
+          <p>Every simulation logged. Documented record of every decision.</p>
+        </div>
+      </div>
+
+      <div class="cycle-compare reveal d4">
+        <div class="bars">
+          <div class="cycle-row traditional">
+            <div class="label">Traditional</div>
+            <div class="bar-track">
+              <div class="bar-fill"></div>
+              <span class="annotation">3 – 6 weeks · cross-functional cycle</span>
+            </div>
+          </div>
+          <div class="cycle-row council">
+            <div class="label">AI Council</div>
+            <div class="bar-track">
+              <div class="bar-fill"></div>
+              <div class="annotation">~30 seconds</div>
+            </div>
+          </div>
+        </div>
+        <div class="cycle-callout">
+          <div class="mult">10,000<span class="x">×</span></div>
+          <div class="caption">Faster validation, measured in elapsed time</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       SLIDE 5 — Operational Vision
+       ═══════════════════════════════════════════════════════════════ -->
+  <section class="slide slide-5" id="s5">
+    <div class="slide-header">
+      <div class="slide-id"><span class="num">05</span><span class="sep"></span><span class="name">Operational vision</span></div>
+      <div class="slide-brand"><strong>AI Product Council</strong> · Internal · Product Research</div>
+    </div>
+
+    <div class="slide-inner">
+
+      <div class="header">
+        <div class="eyebrow reveal">Vision</div>
+        <h2 class="headline reveal d1" style="margin-top:14px;">At <span class="accent">full scale.</span></h2>
+        <p class="lede reveal d2" style="margin-top:14px;">
+          Production-deployed, this becomes the front door of every feature decision.
+        </p>
+      </div>
+
+      <div class="ops-cols">
+
+        <div class="ops-col reveal d3">
+          <h3>Day-to-day workflow</h3>
+          <ol class="workflow-list">
+            <li class="workflow-item"><span class="step-num">01</span><span class="step-text"><strong>Paste the feature spec.</strong></span></li>
+            <li class="workflow-item"><span class="step-num">02</span><span class="step-text"><strong>Pick target segment and rollout.</strong></span></li>
+            <li class="workflow-item"><span class="step-num">03</span><span class="step-text"><strong>Run.</strong> Eleven agents return in ~30 seconds.</span></li>
+            <li class="workflow-item"><span class="step-num">04</span><span class="step-text"><strong>Review the verdict</strong> and the ranked enhancement list.</span></li>
+            <li class="workflow-item"><span class="step-num">05</span><span class="step-text"><strong>Iterate the spec</strong> before any sprint planning begins.</span></li>
+          </ol>
+        </div>
+
+        <div class="ops-col reveal d4">
+          <h3>Roadmap to production</h3>
+          <ul class="roadmap-list">
+            <li class="roadmap-item">
+              <div class="title">Workflow integrations</div>
+              <div class="text">Jira, Confluence, Notion, Slack — embed the Council where PMs already work.</div>
+            </li>
+            <li class="roadmap-item">
+              <div class="title">Persona calibration per BU</div>
+              <div class="text">Ingest CSAT and survey data so retail, wealth, commercial, and cards each get tuned archetypes.</div>
+            </li>
+            <li class="roadmap-item">
+              <div class="title">Governance &amp; bias review</div>
+              <div class="text">Quarterly review by actual stakeholder leads. Persona-drift monitoring.</div>
+            </li>
+            <li class="roadmap-item">
+              <div class="title">Outcome feedback loop</div>
+              <div class="text">Real launch metrics tune persona predictions over time. Council sharpens with use.</div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="footer-attr">AI Product Council · Internal · Product Research</div>
+  </section>
+
+</main>
+
+<script>
+  // Slide counter
+  const slides = document.querySelectorAll('.slide');
+  const cur = document.getElementById('cur');
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && e.intersectionRatio >= 0.5) {
+        const idx = Array.from(slides).indexOf(e.target) + 1;
+        cur.textContent = String(idx).padStart(2, '0');
+      }
+    });
+  }, { threshold: [0.5] });
+  slides.forEach(s => counterObs.observe(s));
+
+  // Reveal-on-enter animations
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('in');
+      else e.target.classList.remove('in');
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  // Demo video autoplay on viewport
+  const demoVideo = document.getElementById('demo-video');
+  const demoSlide = document.getElementById('s-demo');
+  if (demoVideo && demoSlide) {
+    const vidObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting && e.intersectionRatio >= 0.4) {
+          demoVideo.currentTime = 0;
+          demoVideo.play().catch(() => {});
+        } else {
+          demoVideo.pause();
+        }
+      });
+    }, { threshold: [0.4] });
+    vidObs.observe(demoSlide);
+  }
+</script>
+
+</body>
+</html>
